@@ -20,7 +20,7 @@ const Calculator = () => {
             const result = eval(currentNumber);
             setCurrentNumber(result);
         } else {
-            setCurrentNumber(currentNumber + event.key);
+            setCurrentNumber('')
         }
     }
 
