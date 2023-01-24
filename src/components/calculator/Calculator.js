@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import "./Calculator.css";
 
+import Button from '../utils/assets/button';
+
 const Calculator = () => {
     const [currentNumber, setCurrentNumber] = useState('');
     const [previousNumber, setPreviousNumber] = useState('');
     const [operator, setOperator] = useState('');
 
 
-    const handleNumberClick = event => {
-        setCurrentNumber(currentNumber + event.target.value);
+    const handleNumberClick = value => {
+        setCurrentNumber(currentNumber + value);
     };
 
-    const handleClear = event => {
-        const currentNumber = event.target.innerText;
+    const handleClear = value => {
+        const currentNumber = value;
 
         if (currentNumber === 'C') {
             setCurrentNumber('');
@@ -24,10 +26,10 @@ const Calculator = () => {
         }
     }
 
-    const handleOperatorClick = event => {
+    const handleOperatorClick = value => {
         setPreviousNumber(currentNumber);
         setCurrentNumber('');
-        setOperator(event.target.value);
+        setOperator(value);
     };
 
     const handleEqualClick = () => {
@@ -72,27 +74,28 @@ const Calculator = () => {
         <div>
             <input type="text" value={currentNumber} onKeyPress={handleKeyPress} />
             <br />
-            <button value="7" onClick={handleNumberClick}>7</button>
-            <button value="8" onClick={handleNumberClick}>8</button>
-            <button value="9" onClick={handleNumberClick}>9</button>
-            <button value="+" onClick={handleOperatorClick}>+</button>
+            <Button value="7" onClick={() => handleNumberClick(7)} />
+            <Button value="8" onClick={() => handleNumberClick(8)} />
+            <Button value="9" onClick={() => handleNumberClick(9)} />
+            <Button value="+" onClick={() => handleOperatorClick("+")} />
             <br />
-            <button value="4" onClick={handleNumberClick}>4</button>
-            <button value="5" onClick={handleNumberClick}>5</button>
-            <button value="6" onClick={handleNumberClick}>6</button>
-            <button value="-" onClick={handleOperatorClick}>-</button>
+            <Button value="4" onClick={() => handleNumberClick(4)} />
+            <Button value="5" onClick={() => handleNumberClick(5)} />
+            <Button value="6" onClick={() => handleNumberClick(6)} />
+            <Button value="-" onClick={() => handleOperatorClick("-")} />
             <br />
-            <button value="1" onClick={handleNumberClick}>1</button>
-            <button value="2" onClick={handleNumberClick}>2</button>
-            <button value="3" onClick={handleNumberClick}>3</button>
-            <button value="*" onClick={handleOperatorClick}>*</button>
+            <Button value="1" onClick={() => handleNumberClick(1)} />
+            <Button value="2" onClick={() => handleNumberClick(2)} />
+            <Button value="3" onClick={() => handleNumberClick(3)} />
+            <Button value="*" onClick={() => handleOperatorClick("*")} />
             <br />
-            <button value="0" onClick={handleNumberClick}>0</button>
-            <button value="." onClick={handleNumberClick}>.</button>
-            <button onClick={handleEqualClick}>=</button>
-            <button value="/" onClick={handleOperatorClick}>/</button>
+            <Button value="0" onClick={() => handleNumberClick(0)} />
+            <Button value="." onClick={() => handleNumberClick(".")} />
+            <Button value="=" onClick={() => handleEqualClick("=")} />
+            <Button value="/" onClick={() => handleOperatorClick("/")} />
             <br />
-            <button class="clear" onClick={handleClear}>Limpar</button>
+            <br />
+            <Button value="C" onClick={() => handleClear()} />
         </div>
     );
 };
